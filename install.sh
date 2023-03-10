@@ -10,12 +10,27 @@ mkdir ~/.sync-notes
 rm -rf ~/.sync-notes/bin
 cp -r /tmp/sync-notes/bin ~/.sync-notes/bin
 
-# Create cron job for syncing notes
-CRON_STRING="*/5 * * * *    $USER    /Users/$USER/.sync-notes/bin/sync-notes.sh"
-sudo touch /etc/cron.d/sync-notes
-sudo chmod +x /etc/cron.d/sync-notes
-# https://askubuntu.com/a/103644/676338
-echo $CRON_STRING | sudo tee /etc/cron.d/sync-notes
+# Create cron job (LaunchD in Mac) for syncing notes
+LAUNCHD_NAME="com.sync-notes.sync-notes"
+read -r -d '' LAUNCHD_FILE << EOM
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>$LAUNCHD_NAME</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/$USER/.sync-notes/bin/sync-notes.sh</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>300</integer>
+</dict>
+</plist>
+EOM
+sudo touch /Library/LaunchDaemons/$LAUNCHD_NAME.plist
+echo $LAUNCHD_FILE | sudo tee /Library/LaunchDaemons/$LAUNCHD_NAME.plist
+sudo launchctl load -w /Library/LaunchDaemons/$LAUNCHD_NAME.plist
 
 # Clean-up
 rm -rf /tmp/sync-notes
