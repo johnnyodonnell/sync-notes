@@ -1,6 +1,6 @@
 ## Install
 
 ```
-zsh <(curl -s https://github.com/johnnyodonnell/sync-notes/blob/master/install.sh)
+zsh <(curl -s https://raw.githubusercontent.com/johnnyodonnell/sync-notes/master/install.sh)
 ```
 
