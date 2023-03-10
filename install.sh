@@ -14,7 +14,7 @@ cp -r /tmp/sync-notes/bin ~/.sync-notes/bin
 CRON_STRING="*/5 * * * *    $USER    /home/$USER/.sync-notes/bin/sync-notes.sh"
 sudo touch /etc/cron.d/sync-notes
 # https://askubuntu.com/a/103644/676338
-echo $CRON_STRING > sudo tee /etc/cron.d/sync-notes
+echo $CRON_STRING | sudo tee /etc/cron.d/sync-notes
 
 # Clean-up
 rm -rf /tmp/sync-notes
