@@ -2,16 +2,19 @@
 
 # Clone note-sync repository
 cd /tmp
-rm -rf /tmp/notes-sync
-git clone --depth=1 git@github.com:johnnyodonnell/notes-sync.git
+rm -rf /tmp/sync-notes
+git clone --depth=1 git@github.com:johnnyodonnell/sync-notes.git
 
 # Add notes-sync bin to user home folder
-mkdir ~/.notes-sync
-rm -rf ~/.notes-sync/bin
-cp /tmp/notes-sync/bin ~/.notes-sync/bin
+mkdir ~/.sync-notes
+rm -rf ~/.sync-notes/bin
+cp /tmp/sync-notes/bin ~/.sync-notes/bin
 
 # Create cron job for syncing notes
-CRON_STRING="*/5 * * * *    $USER    /home/$USER/.notes-sync/bin/notes-sync.sh"
+CRON_STRING="*/5 * * * *    $USER    /home/$USER/.sync-notes/bin/sync-notes.sh"
 sudo touch sync-notes
 sudo echo $CRON_STRING > sync-notes
+
+# Clean-up
+rm -rf /tmp/sync-notes
 

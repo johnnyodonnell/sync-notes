@@ -4,7 +4,7 @@
 IFS=$'\n'
 set -f
 
-for dir in $(cat ~/.notes-sync/dirs); do
+for dir in $(cat ~/.sync-notes/dirs); do
     if [ -z "$(git -C $dir status --porcelain)" ]; then
         ~/.notes-sync/bin/commit-push-notes.sh $dir
     fi
