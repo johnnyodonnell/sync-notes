@@ -11,7 +11,7 @@ rm -rf ~/.sync-notes/bin
 cp -r /tmp/sync-notes/bin ~/.sync-notes/bin
 
 # Create cron job for syncing notes
-CRON_STRING="*/5 * * * *    $USER    /home/$USER/.sync-notes/bin/sync-notes.sh"
+CRON_STRING="*/5 * * * *    $USER    /Users/$USER/.sync-notes/bin/sync-notes.sh"
 sudo touch /etc/cron.d/sync-notes
 sudo chmod +x /etc/cron.d/sync-notes
 # https://askubuntu.com/a/103644/676338
