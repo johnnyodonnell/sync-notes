@@ -30,7 +30,8 @@ read -r -d '' LAUNCHD_FILE << EOM
 EOM
 touch ~/Library/LaunchAgents/$LAUNCHD_NAME.plist
 echo $LAUNCHD_FILE > ~/Library/LaunchAgents/$LAUNCHD_NAME.plist
-launchctl load -w ~/Library/LaunchAgents/$LAUNCHD_NAME.plist
+launchctl unload ~/Library/LaunchAgents/$LAUNCHD_NAME.plist
+launchctl load ~/Library/LaunchAgents/$LAUNCHD_NAME.plist
 
 # Clean-up
 rm -rf /tmp/sync-notes
