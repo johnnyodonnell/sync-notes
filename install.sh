@@ -6,7 +6,7 @@ rm -rf /tmp/sync-notes
 git clone --depth=1 git@github.com:johnnyodonnell/sync-notes.git
 
 # Add notes-sync bin to user home folder
-mkdir ~/.sync-notes
+mkdir -p ~/.sync-notes
 rm -rf ~/.sync-notes/bin
 cp -r /tmp/sync-notes/bin ~/.sync-notes/bin
 
