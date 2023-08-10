@@ -5,7 +5,7 @@ IFS=$'\n'
 set -f
 
 for dir in $(cat ~/.sync-notes/dirs); do
-    ~/.sync-notes/bin/pull-notes.sh
+    ~/.sync-notes/bin/pull-notes.sh $dir
 
     if [ "$(git -C $dir status --porcelain)" ]; then
         ~/.sync-notes/bin/commit-push-notes.sh $dir
