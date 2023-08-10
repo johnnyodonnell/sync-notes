@@ -13,7 +13,7 @@ cp -r /tmp/sync-notes/bin ~/.sync-notes/bin
 # Create cron job for syncing notes
 CRON_FILENAME=sync-notes-$USER
 read -r -d '' CRON_FILE << EOM
-*/5 * * * * $USER ~/.sync-notes/bin/sync-notes.sh
+* * * * * $USER ~/.sync-notes/bin/sync-notes.sh
 EOM
 sudo touch /etc/cron.d/$CRON_FILENAME
 echo $CRON_FILE | sudo tee /etc/cron.d/$CRON_FILENAME
