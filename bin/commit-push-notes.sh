@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-git -C $1 pull
-
 DATE=$(date "+%Y-%m-%d")
 
 git -C $1 add .
